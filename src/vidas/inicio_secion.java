@@ -47,7 +47,7 @@ public class inicio_secion extends JFrame{
 		passwordField = new JPasswordField();
 		passwordField.setBounds(23, 111, 200, 40);
 		getContentPane().add(passwordField);
-		setIconImage(Toolkit.getDefaultToolkit().getImage(inicio_secion.class.getResource("/imagenes/vidas.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(inicio_secion.class.getResource("/imagenes/vidas2.png")));
 		setResizable(false);
 		setTitle("Inicio Secion VIDAS");
 		setSize(246, 275);
