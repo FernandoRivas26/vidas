@@ -23,7 +23,7 @@ public class conn
 		try 
 		{
 			Class.forName(driver);
-			c=DriverManager.getConnection("jdbc:mysql://localhost/fotografo",usr,pwd); 	//Configurar la conexión (host, usuario, contraseña)
+			c=DriverManager.getConnection("jdbc:mysql://localhost/vidas",usr,pwd); 	//Configurar la conexión (host, usuario, contraseña)
 			
 			//pstm=c.prepareStatement(sql);
 		} 

@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import cnx.*;
+
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -34,6 +37,9 @@ public class CapturaDonador extends JFrame implements ActionListener
 	private JTextField tfTel;
 	private JCheckBox chckUTD;
 	private JComboBox cbTipoSangre, cbCarrera;
+	private JButton btnLimpiar, btnIngresar;
+	
+	private DonadoresDAO donadores_dao=new DonadoresDAO(); 
 
 	/**
 	 * Launch the application.
@@ -179,8 +185,8 @@ public class CapturaDonador extends JFrame implements ActionListener
 		lblDireccin.setBounds(354, 226, 85, 20);
 		contentPane.add(lblDireccin);
 		
-		cbTipoSangre = new JComboBox();
-		cbTipoSangre.setBounds(449, 87, 70, 23);
+		cbTipoSangre = new JComboBox(donadores_dao.traerTiposSangre());
+		cbTipoSangre.setBounds(459, 86, 70, 23);
 		contentPane.add(cbTipoSangre);
 		
 		JLabel lblNewLabel_1 = new JLabel("Referencia");
@@ -195,16 +201,18 @@ public class CapturaDonador extends JFrame implements ActionListener
 		lblDatosDelDonador.setBounds(242, 11, 200, 25);
 		contentPane.add(lblDatosDelDonador);
 		
-		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.setBounds(585, 302, 89, 23);
+		btnLimpiar.addActionListener(this);
 		contentPane.add(btnLimpiar);
 		
-		JButton btnIngresar = new JButton("Ingresar");
+		btnIngresar = new JButton("Ingresar");
 		btnIngresar.setBounds(486, 302, 89, 23);
+		btnIngresar.addActionListener(this);
 		contentPane.add(btnIngresar);
 		
 		JPanel panelUTD = new JPanel();
-		panelUTD.setVisible(false);
+		//panelUTD.setVisible(false);
 		panelUTD.setLayout(null);
 		panelUTD.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panelUTD.setBackground(Color.LIGHT_GRAY);
@@ -212,8 +220,8 @@ public class CapturaDonador extends JFrame implements ActionListener
 		contentPane.add(panelUTD);
 		
 		
-		cbCarrera = new JComboBox();
-		cbCarrera.setBounds(74, 59, 252, 30);
+		cbCarrera = new JComboBox(donadores_dao.traerCarreras());
+		cbCarrera.setBounds(10, 40, 300, 30);
 		panelUTD.add(cbCarrera);
 		
 		JLabel lblDatosEscolares = new JLabel("Datos escolares");
