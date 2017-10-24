@@ -24,7 +24,7 @@ import java.awt.Color;
 public class CapturaDonador extends JFrame implements ActionListener
 {
 
-	private JPanel contentPane;
+	private JPanel contentPane, panelUTD;
 	private JTextField tfCurp;
 	private JTextField tfCel;
 	private JTextField tfNombre;
@@ -211,8 +211,8 @@ public class CapturaDonador extends JFrame implements ActionListener
 		btnIngresar.addActionListener(this);
 		contentPane.add(btnIngresar);
 		
-		JPanel panelUTD = new JPanel();
-		//panelUTD.setVisible(false);
+		panelUTD = new JPanel();
+		panelUTD.setVisible(false);
 		panelUTD.setLayout(null);
 		panelUTD.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panelUTD.setBackground(Color.LIGHT_GRAY);
@@ -234,7 +234,31 @@ public class CapturaDonador extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) 
 	{
-		// TODO Auto-generated method stub
+		if (e.getSource()==btnLimpiar)
+		{
+			tfCurp.setText(null);
+			tfCel.setText(null);
+			tfNombre.setText(null);
+			tfAp1.setText(null);
+			tfRefNombre.setText(null);
+			tfAp2.setText(null);
+			tfRefTel.setText(null);
+			tfCorreo.setText(null);
+			tfRefDireccion.setText(null);
+			tfTel.setText(null);
+			chckUTD.setSelected(false);
+			cbCarrera.setSelectedItem(0);
+			cbTipoSangre.setSelectedItem(null);
+			panelUTD.setVisible(false);
+			
+		}
+		if (e.getSource()==btnIngresar)
+		{
+			if (chckUTD.isSelected())
+			{
+				panelUTD.setVisible(true);
+			}
+		}
 		
 	}
 }
