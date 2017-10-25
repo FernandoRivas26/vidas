@@ -21,5 +21,9 @@ public class UTD
 	{
 		this.fecha = fecha;
 	}
+	@Override
+	public String toString() {
+		return "UTD [carrera=" + carrera + ", fecha=" + fecha + "]";
+	}
 
 }

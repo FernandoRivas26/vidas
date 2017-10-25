@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.toedter.calendar.JYearChooser;
+
 import cnx.*;
 
 import javax.swing.JTextField;
@@ -37,8 +39,10 @@ public class CapturaDonador extends JFrame implements ActionListener
 	private JTextField tfRefDireccion;
 	private JTextField tfTel;
 	private JCheckBox chckUTD;
-	private JComboBox cbTipoSangre, cbCarrera;
+	private JComboBox cbTipoSangre, cbCarrera, cbMes;
 	private JButton btnLimpiar, btnIngresar;
+	
+	private JYearChooser yearChooser;
 	
 	private DonadoresDAO donadores_dao=new DonadoresDAO(); 
 
@@ -215,22 +219,38 @@ public class CapturaDonador extends JFrame implements ActionListener
 		
 		panelUTD = new JPanel();
 		panelUTD.setVisible(false);
-		panelUTD.setLayout(null);
 		panelUTD.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panelUTD.setBackground(Color.LIGHT_GRAY);
 		panelUTD.setBounds(10, 302, 400, 148);
 		contentPane.add(panelUTD);
+		panelUTD.setLayout(null);
 		
+		// Instanciar Componente
+		yearChooser = new JYearChooser();
+		yearChooser.setBounds(150, 75, 50, 25);
+		yearChooser.setMaximum(3000);
+		yearChooser.setMinimum(2000);
+		 
+		// Ubicar y agregar al panel
+		//yearChooser.setBounds...
+		 
+		panelUTD.add(yearChooser);		
 		
 		cbCarrera = new JComboBox(donadores_dao.traerCarreras());
 		cbCarrera.setBounds(10, 40, 300, 30);
 		panelUTD.add(cbCarrera);
 		
 		JLabel lblDatosEscolares = new JLabel("Datos escolares");
+		lblDatosEscolares.setBounds(100, 11, 199, 30);
 		lblDatosEscolares.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblDatosEscolares.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDatosEscolares.setBounds(100, 11, 199, 30);
 		panelUTD.add(lblDatosEscolares);
+		
+		String[] A= { "Seleccione un mes", "Enero", "Mayo", "Septiembre" };
+		
+		cbMes = new JComboBox(A);
+		cbMes.setBounds(50, 75, 90, 25);
+		panelUTD.add(cbMes);
 	}
 
 	@Override
@@ -289,9 +309,19 @@ public class CapturaDonador extends JFrame implements ActionListener
 						
 						donador.setUtd(true);
 						UTD utd=new UTD();
+						utd.setCarrera(donadores_dao.buscarCarrera(cbCarrera.getSelectedItem().toString()));
+						utd.setFecha(cbMes.getSelectedItem().toString()+" "+yearChooser.getYear());
 						
+						//System.out.println(utd.toString());
 						
-						System.out.println(donador.toString());
+						if (donadores_dao.ingresarDonadorUTD(donador, utd))
+						{
+							JOptionPane.showMessageDialog(null, "Donador ingresado", "Realizado",JOptionPane.INFORMATION_MESSAGE);
+						}
+						else
+						{
+							JOptionPane.showMessageDialog(null, "No realizado", "Error", JOptionPane.ERROR_MESSAGE);
+						}
 					}				
 				}
 				else

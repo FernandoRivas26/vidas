@@ -6,7 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 import donadores.Donador;
+import donadores.UTD;
 
 public class DonadoresDAO 
 {
@@ -37,7 +40,7 @@ public class DonadoresDAO
 		} 
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 			
 		
@@ -70,7 +73,7 @@ public class DonadoresDAO
 		} 
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		
 		
@@ -102,7 +105,7 @@ public class DonadoresDAO
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		
 		return id;
@@ -141,7 +144,48 @@ public class DonadoresDAO
 		} 
 		catch (SQLException e) 
 		{
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
+		}
+		
+		return bandera;
+	}
+	
+	public boolean ingresarDonadorUTD(Donador d, UTD u)
+	{
+		boolean bandera=false;
+		Connection c=con.conectar();
+		
+		try 
+		{
+			bandera=ingresarDonador(d);
+			
+			if (bandera)
+			{
+				sql="INSERT INTO datosutd VALUES (@,?,?,?) ";
+				pstm=c.prepareStatement(sql);
+				
+				pstm.setString(1, d.getCurp());
+				pstm.setInt(2, u.getCarrera());
+				pstm.setString(3, u.getFecha());
+				
+				if (pstm.executeUpdate()==1)
+				{
+					bandera=true;
+				}
+				else
+				{
+					bandera=false;
+				}				
+			}		
+			
+			con.desconectar(c);
+			pstm.close();
+			
+			
+		} 
+		catch (SQLException e) 
+		{
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		
 		return bandera;
@@ -163,7 +207,7 @@ public class DonadoresDAO
 			
 			while (rs.next())
 			{
-				id=rs.getInt("id_tipo_sangre");
+				id=rs.getInt("id_carrera");
 			}
 			
 			con.desconectar(c);
@@ -172,7 +216,7 @@ public class DonadoresDAO
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		
 		
