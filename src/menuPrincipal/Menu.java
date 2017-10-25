@@ -33,7 +33,7 @@ public class Menu extends JFrame implements MouseListener {
 	private final Font arial16 = new Font("arial", Font.PLAIN, 16);
 	private final Font arial16b = new  Font("arial", Font.BOLD, 16);
 	
-	public Menu() {
+	public Menu() { //Qwerty
 		setTitle("VIDAS");
 		setSize(700,500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
