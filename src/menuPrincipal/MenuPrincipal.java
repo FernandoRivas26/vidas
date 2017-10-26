@@ -32,7 +32,7 @@ import org.jfree.data.general.DefaultPieDataset;
 public class MenuPrincipal extends JFrame implements MouseListener {
 
 	private JPanel contenedor, pnl_head, pnl_menu, pnl_graf, pnl_opc;
-	private JButton btn_insertar, btn_imprimir, btn_consultar;
+	private JButton btn_insertar, btn_imprimir, btn_consultar, btn_actgraf, btn_mostgraf;
 	
 	private final Font arial14 = new Font("arial", Font.PLAIN, 14);
 	private final Font arial14b = new Font("arial", Font.BOLD, 14);
@@ -127,6 +127,21 @@ public class MenuPrincipal extends JFrame implements MouseListener {
 			e.printStackTrace();
 		}
 		
+		btn_actgraf = new JButton("Actualizar grafica");
+		btn_actgraf.setBounds(0, 0, 250, 50);
+		btn_actgraf.setBackground(null);
+		btn_actgraf.setBorder(null);
+		btn_actgraf.setFont(arial16b);
+		btn_actgraf.addMouseListener(this);
+		pnl_opc.add(btn_actgraf);
+		
+		btn_mostgraf = new JButton("Mas gráficas...");
+		btn_mostgraf.setBounds(250, 0, 250, 50);
+		btn_mostgraf.setBackground(null);
+		btn_mostgraf.setBorder(null);
+		btn_mostgraf.setFont(arial16b);
+		btn_mostgraf.addMouseListener(this);
+		pnl_opc.add(btn_mostgraf);
 
 	}	
 	
@@ -172,6 +187,14 @@ public class MenuPrincipal extends JFrame implements MouseListener {
 			btn_consultar.setBackground(Color.red);
 			btn_consultar.setForeground(Color.white);
 		}
+		if(e.getSource()==btn_actgraf) {
+			btn_actgraf.setBackground(Color.red);
+			btn_actgraf.setForeground(Color.white);
+		}
+		if(e.getSource()==btn_mostgraf) {
+			btn_mostgraf.setBackground(Color.red);
+			btn_mostgraf.setForeground(Color.white);
+		}
 	}
 
 	//--------------------------------------------
@@ -187,6 +210,14 @@ public class MenuPrincipal extends JFrame implements MouseListener {
 		if(e.getSource()==btn_consultar) {
 			btn_consultar.setForeground(Color.black);
 			btn_consultar.setBackground(Color.white);
+		}
+		if(e.getSource()==btn_actgraf) {
+			btn_actgraf.setBackground(Color.white);
+			btn_actgraf.setForeground(Color.black);
+		}
+		if(e.getSource()==btn_mostgraf) {
+			btn_mostgraf.setBackground(Color.white);
+			btn_mostgraf.setForeground(Color.black);
 		}
 	}
 	
@@ -216,7 +247,7 @@ public class MenuPrincipal extends JFrame implements MouseListener {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				Menu mmm = new Menu();
+				MenuPrincipal mmm = new MenuPrincipal();
 				mmm.setVisible(true);
 			}
 			
