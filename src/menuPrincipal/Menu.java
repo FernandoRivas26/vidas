@@ -42,7 +42,7 @@ public class Menu extends JFrame implements MouseListener {
 	private static final String RAVEN = "org.pushingpixels.substance.api.skin.RavenSkin";
 	private static final String CREME = "org.pushingpixels.substance.api.skin.CremeSkin";
 	
-	public Menu() {
+	public Menu() { //Qwerty
 		setTitle("VIDAS");
 		setSize(700,500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
