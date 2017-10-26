@@ -29,7 +29,7 @@ import org.jfree.data.general.DefaultPieDataset;
 
 //import UpperEssential.UpperEssentialLookAndFeel;
 
-public class Menu extends JFrame implements MouseListener {
+public class MenuPrincipal extends JFrame implements MouseListener {
 
 	private JPanel contenedor, pnl_head, pnl_menu, pnl_graf, pnl_opc;
 	private JButton btn_insertar, btn_imprimir, btn_consultar;
@@ -42,7 +42,7 @@ public class Menu extends JFrame implements MouseListener {
 	private static final String RAVEN = "org.pushingpixels.substance.api.skin.RavenSkin";
 	private static final String CREME = "org.pushingpixels.substance.api.skin.CremeSkin";
 	
-	public Menu() { //Qwerty
+	public MenuPrincipal() { //Qwerty
 		setTitle("VIDAS");
 		setSize(700,500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
