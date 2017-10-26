@@ -5,5 +5,8 @@
 	<classpathentry kind="lib" path="src/postgresql-42.1.4.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Carlos Escareño/Documents/UTD/mysql-connector-java-5.1.42/mysql-connector-java-5.1.42-bin.jar" sourcepath="C:/Users/Carlos Escareño/Documents/UTD/mysql-connector-java-5.1.42/mysql-connector-java-5.1.42-bin.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Carlos Escareño/Documents/UTD/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/luis_/Downloads/Complementos java/JTattoo-1.6.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/luis_/Downloads/Complementos java/jfreechart-1.0.19/jfreechart-1.0.19-demo.jar"/>
+	<classpathentry kind="lib" path="C:/Users/luis_/Downloads/Complementos java/jcommon-1.0.23/jcommon-1.0.23.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

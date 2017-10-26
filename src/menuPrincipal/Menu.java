@@ -5,33 +5,42 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
+//import org.pushingpixels.substance.api.SubstanceLookAndFeel;
+
+//import com.alee.laf.WebLookAndFeel;
+
+//import UpperEssential.UpperEssentialLookAndFeel;
 
 public class Menu extends JFrame implements MouseListener {
 
-	private JPanel contenedor, pnl_head, pnl_menu, pnl_graf;
+	private JPanel contenedor, pnl_head, pnl_menu, pnl_graf, pnl_opc;
 	private JButton btn_insertar, btn_imprimir, btn_consultar;
 	
 	private final Font arial14 = new Font("arial", Font.PLAIN, 14);
 	private final Font arial14b = new Font("arial", Font.BOLD, 14);
 	private final Font arial16 = new Font("arial", Font.PLAIN, 16);
 	private final Font arial16b = new  Font("arial", Font.BOLD, 16);
+
+	private static final String RAVEN = "org.pushingpixels.substance.api.skin.RavenSkin";
+	private static final String CREME = "org.pushingpixels.substance.api.skin.CremeSkin";
 	
 	public Menu() {
 		setTitle("VIDAS");
@@ -59,8 +68,14 @@ public class Menu extends JFrame implements MouseListener {
 		pnl_graf = new JPanel();
 		pnl_graf.setLayout(new BorderLayout());
 		pnl_graf.setBackground(Color.white);
-		pnl_graf.setBounds(200, 50, 500, 450);
+		pnl_graf.setBounds(200, 50, 495, 375);
 		
+		pnl_opc = new JPanel();
+		pnl_opc.setLayout(null);
+		pnl_opc.setBounds(200, 475, 500, 25);
+		pnl_opc.setBackground(Color.white);
+		
+		contenedor.add(pnl_opc);
 		contenedor.add(pnl_graf);
 		contenedor.add(pnl_head);
 		contenedor.add(pnl_menu);
@@ -88,7 +103,7 @@ public class Menu extends JFrame implements MouseListener {
 		data.setValue("Category 2", 27.9);
 		data.setValue("Category 3", 79.5);
 		// create a chart...
-		JFreeChart chart = ChartFactory.createPieChart(
+		JFreeChart chart = ChartFactory.createPieChart3D(
 		"Sample Pie Chart",
 		data,
 		true, // legend?
@@ -99,6 +114,19 @@ public class Menu extends JFrame implements MouseListener {
 		ChartPanel pannn = new ChartPanel(chart);
 		pnl_graf.add(pannn, BorderLayout.CENTER);
 		//frame.setVisible(true);
+		
+		// --------------------------------------
+		// Exportar la grafica a PNG
+		// --------------------------------------
+		String ruta = "img.png";
+		
+		try {
+			ChartUtilities.saveChartAsPNG(new File(ruta), chart, getWidth(), getHeight());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
 	}	
 	
@@ -169,6 +197,25 @@ public class Menu extends JFrame implements MouseListener {
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
+				//SubstanceLookAndFeel.setSkin(CREME);
+				try {
+					/*UpperEssentialLookAndFeel lib = new UpperEssentialLookAndFeel();
+					UIManager.setLookAndFeel(lib);*/
+					//UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+				} catch (UnsupportedLookAndFeelException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				Menu mmm = new Menu();
 				mmm.setVisible(true);
 			}
